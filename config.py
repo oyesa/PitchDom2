@@ -7,7 +7,7 @@ class Config:
     '''
     
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://oyesa:Mimo33@localhost/pitchdom'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://oyesa:sincera@localhost/pitchdom'
     # UPLOADED_PHOTOS_DEST ='app/static/photos'
     # MAIL_SERVER = 'smtp.googlemail.com'
     # MAIL_PORT = 587
