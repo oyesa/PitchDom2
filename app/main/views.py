@@ -1,8 +1,8 @@
 from flask import render_template
-from app import app
+from app import main
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -11,7 +11,7 @@ def index():
     title = 'Welcome to the best pitch website!'
     return render_template('index.html', title = title)
 
-@app.route('/category/<int:add_category_id>')
+@main.route('/category/<int:add_category_id>')
 def add_category(add_category_id):
 
     '''
