@@ -84,3 +84,58 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/new-pitch', methods=['GET', 'POST'])
+@login_required
+def new_pitch():
+    title = 'New Pitch | Pitch'
+    form = PitchForm()
+    categories = Category.query.all()
+    if form.validate_on_submit():
+        category_id=(Category.get_category_name(form.category.data))
+        pitch = Pitch(pitch_content=form.pitch_content.data, pitcher=current_user, title=form.title.data, category_id=(Category.get_category_name(form.category.data)), upvotes= 0, downvotes=0)
+        db.session.add(pitch)
+        db.session.commit()
+        flash('Your pitch has been posted!', 'success')
+        return redirect(url_for('main.pitches_by_category', category_id = category_id))
+
+    return render_template('create_pitch.html',title=title, pitch_form=form, categories=categories)
+
+@main.route("/comment/<int:pitch_id>", methods=['GET', 'POST'])
+@login_required
+def new_comment(pitch_id):
+    title = 'New Comment | Pitch'
+    form = CommentForm()
+    categories = Category.query.all()
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    if form.validate_on_submit():
+        comment = Comment(comment_content=form.comment_content.data, author=current_user, pitch_id=pitch_id)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment has been added!', 'success')
+        return redirect(url_for('main.pitches_by_category', category_id = pitch.category_id))
+
+    return render_template('add_comment.html', title=title, comment_form=form, categories=categories, pitch=pitch)
+
+@main.route('/upvote_pitch/<pitch_id>')
+def upvote (pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+
+    counted_upvotes = pitch.upvotes + 1
+
+    pitch.upvotes = counted_upvotes
+    db.session.commit()
+
+    return redirect(url_for('main.pitches_by_category', category_id = pitch.category_id))
+
+@main.route('/downvote_pitch/<pitch_id>')
+def downvote (pitch_id):
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+
+
+    counted_downvotes = pitch.downvotes + 1
+
+    pitch.downvotes = counted_downvotes
+    db.session.commit()
+
+    return redirect(url_for('main.pitches_by_category', category_id = pitch.category_id))
