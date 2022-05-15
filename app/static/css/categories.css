@@ -1,0 +1,68 @@
+.introduction{
+  margin: 2%;
+}
+.introduction{
+  padding-left: 25%;
+  padding-right: 25%;
+  text-align: justify;
+}
+.jumbotron{
+  vertical-align: middle;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0.2rem 0.5rem #1d2d50;
+  padding: 0 !important;
+  width: 46%;
+  margin: 2%;
+}
+.jumbotron p{
+  font-size: 14px;
+}
+#white{
+  box-shadow: 0 0.2rem 0.5rem #14213d;
+  border-radius: 10px;
+  background-color: #14213d;
+  padding: 1%;
+  z-index: 10;
+}
+.comments{
+  margin: 3%;
+  color: inherit;
+}
+.blockquote p{
+  font-size: 14px;
+  color: white;
+}
+.blockquote a{
+  font-size: 12px;
+  color: white;
+}
+.comments p{
+  font-size: 12px;
+  color: inherit;
+}
+blockquote footer:before, blockquote small:before {
+  content: none;
+}
+.commenter{
+  color: inherit;
+}
+.col-md-8{
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px){
+  .blockquote p{
+      font-size: 14px;
+  }
+}
+@media (max-width: 767px){
+  .introduction, #nothing{
+      padding-left: 10%;
+      padding-right: 10%;
+  }
+  .jumbotron{
+      width: 97%;
+      margin: 3%;
+  }
+}
