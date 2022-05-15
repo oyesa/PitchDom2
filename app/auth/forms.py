@@ -7,7 +7,7 @@ from wtforms import StringField, BooleanField, PasswordField, SubmitField, Valid
 
 class LoginForm(FlaskForm):
     """
-    Login form
+    This class defines the login form
     """
     email = StringField('Email', validators=[DataRequired(), Length(1, 50), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -17,7 +17,7 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     """
-     class that defines the registration form
+     This classd efines the registration form
     """
     name = StringField('Name', validators=[DataRequired(), Length(1, 50)])
     email = StringField('Email', validators=[DataRequired(), Length(1, 50), Email()])
