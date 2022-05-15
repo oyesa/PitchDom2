@@ -1,40 +1,33 @@
+from crypt import methods
 from flask import render_template, redirect, url_for, request, abort, flash
 from . import main
 from ..models import User, Pitch, Comment, Category
 from flask_login import login_required, current_user
 from .forms import UpdateProfile, PitchForm, CommentForm, CategoryForm
-from .. import db, photos
+from .. import db
+from ..static import photos
 
 # Views
 @main.route('/')
 def index():
-    '''
-    View root page function ch returns the index page data
-    '''
-    title = 'Pitch'
+    title = 'PitchDom'
     categories = Category.query.all()
     return render_template('index.html', title=title, categories=categories) 
     
 @main.route('/category/add-category', methods=['GET', 'POST'])
+@login_required
 def add_category():
     form = CategoryForm()
-    if current_user.username != "Lorna":
-        abort(404)
     if form.validate_on_submit():
-        category = Category(category_name=form.category_name.data)
+        category = Category(name=form.name.data)
         db.session.add(category)
         db.session.commit()
-        return redirect(url_for('main.index'))
-
-    title = "New Category | Pitch"
-    return render_template('add_category.html', category_form = form, title=title)
+        flash('Category added successfully!', category='success')
+        return redirect(url_for('.index'))
+    return render_template('add_category.html', category_form = form)
 
 @main.route('/pitches/<category_id>')
-def pitches_by_category(category_id):
-    '''
-    View pitches page function that displays the pitches available
-    '''
-    
+def pitches_by_category(category_id): 
     pitches = Pitch.get_category_pitch(category_id)
     category = Category.query.filter_by(id = category_id).first()
     category_name = category.category_name
@@ -43,14 +36,15 @@ def pitches_by_category(category_id):
     title=category_name + " | Pitch"
     return render_template('categories.html', pitches = pitches, categories=categories, category_name=category_name, comments=comments, title=title)
 
-@main.route('/user/<uname>')
+#profile page
+@main.route('/user/<uname>', methods=['GET', 'POST'])
 @login_required
 def profile(uname):
-    categories = Category.query.all()
     user = User.query.filter_by(username = uname).first()
-    title = current_user.username + " | Pitch"
     if user is None:
         abort(404)
+    categories = Category.query.all()
+    title = current_user.username + " | Pitch"
     pitches = Pitch.get_user_pitch(user.id)
     return render_template("profile/profile.html", user = user, categories=categories, pitches=pitches, title=title)
 
@@ -96,7 +90,7 @@ def new_pitch():
         pitch = Pitch(pitch_content=form.pitch_content.data, pitcher=current_user, title=form.title.data, category_id=(Category.get_category_name(form.category.data)), upvotes= 0, downvotes=0)
         db.session.add(pitch)
         db.session.commit()
-        flash('Your pitch has been posted!', 'success')
+        flash('Your pitch was posted successfully!', category='success')
         return redirect(url_for('main.pitches_by_category', category_id = category_id))
 
     return render_template('create_pitch.html',title=title, pitch_form=form, categories=categories)
@@ -112,7 +106,7 @@ def new_comment(pitch_id):
         comment = Comment(comment_content=form.comment_content.data, author=current_user, pitch_id=pitch_id)
         db.session.add(comment)
         db.session.commit()
-        flash('Your comment has been added!', 'success')
+        flash('Your comment was added successfully!', category='success')
         return redirect(url_for('main.pitches_by_category', category_id = pitch.category_id))
 
     return render_template('add_comment.html', title=title, comment_form=form, categories=categories, pitch=pitch)
@@ -120,9 +114,7 @@ def new_comment(pitch_id):
 @main.route('/upvote_pitch/<pitch_id>')
 def upvote (pitch_id):
     pitch = Pitch.query.filter_by(id = pitch_id).first()
-
     counted_upvotes = pitch.upvotes + 1
-
     pitch.upvotes = counted_upvotes
     db.session.commit()
 
@@ -131,10 +123,7 @@ def upvote (pitch_id):
 @main.route('/downvote_pitch/<pitch_id>')
 def downvote (pitch_id):
     pitch = Pitch.query.filter_by(id = pitch_id).first()
-
-
     counted_downvotes = pitch.downvotes + 1
-
     pitch.downvotes = counted_downvotes
     db.session.commit()
 
