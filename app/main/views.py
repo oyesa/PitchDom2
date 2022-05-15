@@ -3,7 +3,7 @@ from . import main
 from ..models import User, Pitch, Comment, Category
 from flask_login import login_required, current_user
 from .forms import UpdateProfile, PitchForm, CommentForm, CategoryForm
-from .. import db
+from .. import db, photos
 
 # Views
 @main.route('/')
@@ -42,3 +42,45 @@ def pitches_by_category(category_id):
     comments = Comment.query.all()
     title=category_name + " | Pitch"
     return render_template('categories.html', pitches = pitches, categories=categories, category_name=category_name, comments=comments, title=title)
+
+@main.route('/user/<uname>')
+@login_required
+def profile(uname):
+    categories = Category.query.all()
+    user = User.query.filter_by(username = uname).first()
+    title = current_user.username + " | Pitch"
+    if user is None:
+        abort(404)
+    pitches = Pitch.get_user_pitch(user.id)
+    return render_template("profile/profile.html", user = user, categories=categories, pitches=pitches, title=title)
+
+@main.route('/user/<uname>/update',methods = ['GET','POST'])
+@login_required
+def update_profile(uname):
+    user = User.query.filter_by(username = uname).first()
+    categories = Category.query.all()
+    if user is None:
+        abort(404)
+    
+    form = UpdateProfile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile',uname=user.username))
+
+    return render_template('profile/update.html',form =form, categories=categories)
+
+@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(uname):
+    user = User.query.filter_by(username = uname).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',uname=uname))
