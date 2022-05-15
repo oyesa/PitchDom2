@@ -39,7 +39,6 @@ h1 {
 .types{
   padding-left: 2%;
   padding-right: 2%;
-  /* vertical-align: middle; */
 }
 @media (max-width: 768px) {
   h1 {
