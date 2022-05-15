@@ -1,17 +1,14 @@
 import unittest
 from app.models import Pitch
-from app import db
+
 
 class PitchModelTest(unittest.TestCase):
     def setUp(self):
 
         self.new_pitch = Pitch(title = "title", pitch_content= "description", upvotes = 1, downvotes = 1)
-        db.session.add(self.new_pitch)
-        db.session.commit()
 
     def tearDown(self):
         Pitch.query.delete()
-        db.session.commit()
 
     def test_save_pitch(self):
         self.new_pitch.save_pitch()
