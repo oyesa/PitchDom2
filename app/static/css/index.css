@@ -29,7 +29,7 @@ h1 {
   margin: 2%;
   width:100%;
   height: 31rem;
-  box-shadow: 0 0.2rem 0.5rem rgba(103,110,144,.2), 0 0 0 0.1rem rgba(103,110,144,.05);
+  box-shadow: 0 0.2rem 0.5rem rgba(157, 16, 170, 0.2), 0 0 0 0.1rem rgba(157, 16, 170, 0.2);
 }
 .card .btn{
   position: absolute;

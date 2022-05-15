@@ -15,28 +15,28 @@ body,
 }
 
 a {
-  color: #14213D;
+  color: #80f;
 }
 
 .navbar {
   background-color: white;
-  color: #14213d;
+  color: #80f;
   border-radius: 0;
   margin: 0 !important;
   z-index: 1;
-  box-shadow: 0 0 1.8rem rgba(0, 0, 0, .15);
+  box-shadow: 0 0 1.8rem rgba(157, 16, 170, 0.2);
 }
 
 .navbar-toggle {
-  color: #14213d;
+  color: #80f;
 }
 
 .navbar-toggle .icon-bar {
-  background-color: #14213D;
+  background-color: #80f;
 }
 
 #pitch {
-  font-size: 22px;
+  font-size: 24px;
   font-family: 'Fredoka One', cursive;
 }
 
@@ -74,9 +74,9 @@ a:hover {
       font-size: 14px;
       line-height: 1;
       float: right;
-      background-color: #14213D;
+      background-color: #80f;
       color: white;
-      box-shadow: 0 0.2rem 0.5rem rgba(103, 110, 144, .2), 0 0 0 0.1rem rgba(103, 110, 144, .05);
+      box-shadow: 0 0.2rem 0.5rem rgba(157, 16, 170, 0.2), 0 0 0 0.1rem rgba(157, 16, 170, 0.2);
   }
 }
 

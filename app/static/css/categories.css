@@ -10,7 +10,7 @@
   vertical-align: middle;
   border-radius: 10px;
   background-color: white;
-  box-shadow: 0 0.2rem 0.5rem #1d2d50;
+  box-shadow: 0 0.2rem 0.5rem #80F;
   padding: 0 !important;
   width: 46%;
   margin: 2%;
@@ -19,9 +19,9 @@
   font-size: 14px;
 }
 #white{
-  box-shadow: 0 0.2rem 0.5rem #14213d;
+  box-shadow: 0 0.2rem 0.5rem #80f;
   border-radius: 10px;
-  background-color: #14213d;
+  background-color: #80F;
   padding: 1%;
   z-index: 10;
 }
