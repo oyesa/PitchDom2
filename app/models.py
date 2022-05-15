@@ -49,3 +49,19 @@ class Role(db.Model):
 
     def __repr__(self):
         return '<Role %r>' % self.name
+
+
+class Category(db.Model):
+    __tablename__ = 'categories'
+
+    id = db.Column(db.Integer,primary_key= True)
+    category_name = db.Column(db.String())
+    pitches = db.relationship("Pitch", backref ="category", lazy= "dynamic")
+
+    @classmethod
+    def get_category_name(cls,category_name):
+        categoryName = Category.query.filter_by(category_name = category_name).first()
+        return categoryName
+
+    def __repr__(self):
+        return f'Category{self.category_name}' 
