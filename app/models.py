@@ -2,6 +2,7 @@ from . import login_manager
 from flask_login import UserMixin
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
+from datetime import datetime
 
 
 
@@ -65,3 +66,23 @@ class Category(db.Model):
 
     def __repr__(self):
         return f'Category{self.category_name}' 
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer,primary_key = True)
+    comment_content = db.Column(db.String())
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    author_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+
+    def save_comment(self):
+            db.session.add(self)
+            db.session.commit()
+
+    @classmethod
+    def get_comments(cls,id):
+            comments = Comment.query.filter_by(pitch_id=id).all()
+            return comments
+                
+    def __repr__(self):
+        return f'COMMENT {self.comment_content}'
