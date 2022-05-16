@@ -1,3 +1,8 @@
+
+  /* font-family: 'Pacifico', cursive; */
+
+
+
 .container {
   width: 100%;
   height: 100vh;
@@ -13,10 +18,10 @@ img {
 }
 
 .text-content {
-  position: absolute;
   top: 5%;
   right: 3%;
   left: 45%;
+  position: absolute;
 }
 
 h1 {

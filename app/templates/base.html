@@ -19,8 +19,9 @@
     {% endif %}
     {% block styles %} 
   {{ super() }}
-  <link rel="shortcut icon" href="{{ url_for('static', filename='pdicon.png') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Lato&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
   <link rel="stylesheet" href="{{url_for('static',filename='css/base.css')}}" type="text/css">
   <script src="{{url_for('static',filename='js/base.js')}}"></script>

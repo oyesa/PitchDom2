@@ -1,5 +1,5 @@
 html {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Pacifico', cursive;
 }
 
 body,
@@ -36,8 +36,8 @@ a {
 }
 
 #pitch {
-  font-size: 24px;
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
 }
 
 .navbar-right {
@@ -52,7 +52,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Pacifico', cursive;
   color: white;
 }
 

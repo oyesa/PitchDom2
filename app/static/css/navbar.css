@@ -1,0 +1,36 @@
+/* font-family: 'Pacifico', cursive; */
+
+.header{
+  min-height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.nav-logo {
+  border: 3px solid white;
+  border-radius: 5%;
+  color: white;
+  text-decoration-line: none; 
+  font-size: 20px;
+}
+
+.nav-link{
+  font-size: 17px;
+  color: white !important;
+  justify-content: space-between;
+}
+
+.nav-link:hover{
+  background: #80f;
+  border-radius: 3px;
+}
+
+.nav-links ul li a {
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+

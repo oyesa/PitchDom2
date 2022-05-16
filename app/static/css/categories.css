@@ -51,6 +51,9 @@ blockquote footer:before, blockquote small:before {
   display: flex;
   flex-wrap: wrap;
 }
+
+
+/* mediaquery */
 @media (min-width: 768px){
   .blockquote p{
       font-size: 14px;
