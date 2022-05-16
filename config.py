@@ -7,7 +7,7 @@ class Config:
     '''
     
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://oyesa:Mimo33@localhost/pitchdom'
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
      #simple mde  configurations
@@ -16,12 +16,18 @@ class Config:
     
     
 class ProdConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://oyesa:Mimo33@localhost/pitchdom'
     DEBUG = True
+
+class TestConfig(Config):
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://oyesa:Mimo33e@localhost/pitch_test'
+    pass
 
 config_options = {
 'development':DevConfig,
-'production':ProdConfig
+'production':ProdConfig,
+'test':TestConfig
 }

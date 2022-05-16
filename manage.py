@@ -1,6 +1,7 @@
+from xml.etree.ElementTree import Comment
 from app import create_app, db
 from flask_script import Manager,Server
-from app.models import User, Role
+from app.models import Category, User, Role,Pitch
 from  flask_migrate import Migrate, MigrateCommand
 
 
@@ -23,7 +24,7 @@ def tests():
 
 @manager.shell 
 def make_shell_context():
-    return dict(app = app,db = db,User = User, Role=Role)
+    return dict(app = app,db = db,User = User, Role=Role, Pitch=Pitch,Comment=Comment, Category=Category)
 
 
 if __name__ == '__main__':

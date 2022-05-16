@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import render_template, redirect, url_for, request, abort, flash
 from . import main
 from ..models import User, Pitch, Comment, Category
