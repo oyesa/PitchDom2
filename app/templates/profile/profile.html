@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+
 {% block styles%}
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}" type="text/css">
@@ -19,7 +20,7 @@
       <p><b>No profile picture</b></p>
       {% endif %}
 
-      <!--display ubio-->
+      <!--display bio-->
       {% if user.bio %}
       <p> {{user.bio}}</p>
       {%else%}

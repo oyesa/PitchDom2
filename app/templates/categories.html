@@ -1,0 +1,102 @@
+{% extends 'base.html'%}
+
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/categories.css')}}" type="text/css">
+{% endblock %}
+
+<!-- about pitches -->
+{% block content %}
+
+<h2 class="text-center">{{category_name}} Pitches</h2>
+<hr style="width: 50%;">
+<div class="introduction">
+  {% if category_name == "Fashion"%}
+  <h4 class="text-center">Pitching in the world of fashion.</h4>
+  <p class="card-text">Pitching your fashion brand in order to get the right press placement can be just what you need to
+    sell out an item for the season or help you land the 'it' appointment with a retailer you want.
+    to get there you have to know who you are pitching to, invest in your look-book and pitch the right item at the right time. <a
+      href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
+
+  {%elif category_name == "Elevator"%}
+  <h4 class="text-center">Elevator Pitches</h4>
+  <p class="card-text">It has been said that an effective elevator pitch is meant to be no more than 30 seconds, just like the length of 
+    time you ride in an elevator. You want to keep your words easily digestible, so avoid trying to get too deep into specifics as it can drag 
+    on the conversation — and lose your prospect's attention. Your take away here is <strong>Keep your elevator pitch goal-oriented</strong>
+    <a href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
+
+  {%elif category_name == "Architecture"%}
+  <h4 class="text-center">Pitching for Architecture Designs.</h4>
+  <p class="card-text">Pitching for Architecture Designs will require the same mindset we mentioned in an elevator pitch - eyes on the goal.
+    Yet even more, an architecturial pitch requires an edge: balance of design prowess and practicality. If your design is like the empire state 
+    but will take up the entire towns resources to keep it functional then you'll have to go back to the drawing board- <em>literally!</em><a
+      href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
+
+  {%elif category_name == "Investor"%}
+  <h4 class="text-center">The Proverbial shark-tank</h4>
+  <p class="card-text">Investors are busy people. One of the best ways to set your pitch up for success is with a fantastic hook. First, introduce the problem.Then, explain why that is a <em>BIG</em> deal. Finally, present your big idea and impress the sh**t out of them! Remeber investors will prefer to put their money into a unique solution that can be upscaled. <a href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
+
+  {%endif%}
+</div>
+
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {% if pitches %}
+    {% for pitch in pitches %}
+    <div class="jumbotron">
+      <div class="card" id="white">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <h4 class="card-title" style="color: white;">{{pitch.title}}</h4>
+            <p>{{pitch.pitch_content}}</p>
+            <footer class="blockquote-footer">- {{pitch.pitcher.username}}</footer>
+            <small style="float: right;" style="cursor: pointer !important"><a href="/comment/{{pitch.id}}">Comment</a></small>
+          </blockquote>
+        </div>
+        <div class="card-footer text-muted" id="details">
+          <small>Submitted on {{pitch.posted.strftime('%Y-%m-%d')}}</small><br>
+          <a href="{{url_for('main.upvote', uname = current_user.id ,pitch_id = pitch.id)}}"><button
+              class="btn my-2 my-sm-0">{{pitch.upvotes}}&nbsp;<i
+                class="fas fa-thumbs-up"></i>&nbsp;upvote</button></a>&nbsp;&nbsp;
+          <a href="{{url_for('main.downvote', uname = current_user.id ,pitch_id = pitch.id)}}"><button
+              class="btn my-2 my-sm-0">{{pitch.downvotes}}&nbsp;<i
+                class="fas fa-thumbs-up"></i>&nbsp;downvote</button></a>&nbsp;&nbsp;
+        </div>
+      </div>
+      {% for comment in comments %}
+      {%if comment.pitch_id == pitch.id %}
+      <div class="card comments">
+        <div class="card-body">
+          <p class="card-text">{{comment.comment_content}}</p>
+          <small class="commenter" style="float: right;">By: {{comment.author.username}}</small>
+          <br>
+          <hr style="width: 70%;">
+        </div>
+      </div>
+      {% endif %}
+      {% endfor%}
+    </div>
+    {% endfor%}
+    
+    {%endif%}
+  </div>
+  <div class="col-md-2"></div>
+</div>
+{% endblock %}

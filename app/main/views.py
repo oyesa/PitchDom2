@@ -79,6 +79,7 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
+
 @main.route('/new-pitch', methods=['GET', 'POST'])
 @login_required
 def new_pitch():
@@ -94,6 +95,7 @@ def new_pitch():
         return redirect(url_for('main.pitches_by_category', category_id = category_id))
 
     return render_template('create_pitch.html',title=title, pitch_form=form, categories=categories)
+
 
 @main.route("/comment/<int:pitch_id>", methods=['GET', 'POST'])
 @login_required
