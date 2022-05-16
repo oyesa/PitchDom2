@@ -6,41 +6,10 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/categories.css')}}" type="text/css">
 {% endblock %}
 
-<!-- about pitches -->
 {% block content %}
-
-<h2 class="text-center">{{category_name}} Pitches</h2>
-<hr style="width: 50%;">
-<div class="introduction">
-  {% if category_name == "Fashion"%}
-  <h4 class="text-center">Pitching in the world of fashion.</h4>
-  <p class="card-text">Pitching your fashion brand in order to get the right press placement can be just what you need to
-    sell out an item for the season or help you land the 'it' appointment with a retailer you want.
-    to get there you have to know who you are pitching to, invest in your look-book and pitch the right item at the right time. <a
-      href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
-
-  {%elif category_name == "Elevator"%}
-  <h4 class="text-center">Elevator Pitches</h4>
-  <p class="card-text">It has been said that an effective elevator pitch is meant to be no more than 30 seconds, just like the length of 
-    time you ride in an elevator. You want to keep your words easily digestible, so avoid trying to get too deep into specifics as it can drag 
-    on the conversation — and lose your prospect's attention. Your take away here is <strong>Keep your elevator pitch goal-oriented</strong>
-    <a href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
-
-  {%elif category_name == "Architecture"%}
-  <h4 class="text-center">Pitching for Architecture Designs.</h4>
-  <p class="card-text">Pitching for Architecture Designs will require the same mindset we mentioned in an elevator pitch - eyes on the goal.
-    Yet even more, an architecturial pitch requires an edge: balance of design prowess and practicality. If your design is like the empire state 
-    but will take up the entire towns resources to keep it functional then you'll have to go back to the drawing board- <em>literally!</em><a
-      href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
-
-  {%elif category_name == "Investor"%}
-  <h4 class="text-center">The Proverbial shark-tank</h4>
-  <p class="card-text">Investors are busy people. One of the best ways to set your pitch up for success is with a fantastic hook. First, introduce the problem.Then, explain why that is a <em>BIG</em> deal. Finally, present your big idea and impress the sh**t out of them! Remeber investors will prefer to put their money into a unique solution that can be upscaled. <a href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
-
-  {%endif%}
+<div>
+  
 </div>
-
-
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10">

@@ -9,6 +9,10 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://oyesa:Mimo33@localhost/pitchdom'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+     #simple mde  configurations
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
     
     
 class ProdConfig(Config):

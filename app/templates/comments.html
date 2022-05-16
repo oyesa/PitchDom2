@@ -4,6 +4,7 @@
 {% block content %}
 <div class="comments-form" align="center">
     {{ wtf.quick_form(comment_form) }}
+    {{simplemde.load}}
     <div class="display-star">
         <span class="star"></span>
         <span class="star"></span>

@@ -4,10 +4,10 @@
 
 
 .container {
-  width: 100%;
-  height: 100vh;
   padding: 0;
   position: relative;
+  width: 100%;
+  height: 100vh;
   margin: 0;
 }
 
@@ -45,6 +45,8 @@ h1 {
   padding-left: 2%;
   padding-right: 2%;
 }
+
+
 @media (max-width: 768px) {
   h1 {
       font-size: 26px;
@@ -55,10 +57,10 @@ h1 {
   }
 
   .text-content {
-      position: absolute;
       top: 5%;
       right: 3%;
       left: 35%;
+      position: absolute;
   }
   .card{
       height: 24rem;

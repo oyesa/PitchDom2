@@ -3,26 +3,8 @@
 {% import 'bootstrap/wtf.html' as wtf%}
 {% block styles%}
 {{ super() }}
-<!-- <link rel="stylesheet" href="{{url_for('static',filename='css/about.css')}}" type="text/css"> -->
+
 {% endblock styles%}
 
-<!-- Content block -->
-<!-- {% block content %}
-<div class="container form"> 
-    <div class="row">
-      <div class= "col-md-2"> </div>
-      <div class="col-md-8">
-      {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
-        </div>
-      {% endfor %}
-      {{category_form.hidden_tag()}}
-      {{wtf.quick_form(category_form)}}
-     </div>
-     <div class="col-md-2"> </div>
-    </div>
-</div> -->
 {% endblock %}
 

@@ -3,16 +3,17 @@ from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_simplemde import SimpleMDE
 
 
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 login_manager = LoginManager()
+simple = SimpleMDE()
 
 
 def create_app(config_name):
-
     app = Flask(__name__)
 
     # Setting up configuration
@@ -22,7 +23,8 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
-    # mail.init_app(app)
+    simple.init_app(app)
+   
 
     # configure UploadSet
     # configure_uploads(app,photos)
