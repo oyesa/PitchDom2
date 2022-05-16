@@ -66,7 +66,7 @@ def update_profile(uname):
 
         return redirect(url_for('.profile',uname=user.username))
 
-    return render_template('profile/update.html',form =form, categories=categories)
+    return render_template('profile/update_profile.html',form =form, categories=categories)
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required
@@ -80,27 +80,25 @@ def update_pic(uname):
     return redirect(url_for('main.profile',uname=uname))
 
 
-@main.route('/new-pitch', methods=['GET', 'POST'])
+@main.route('/new-pitch/<uname>', methods=['GET', 'POST'])
 @login_required
-def new_pitch():
-    title = 'New Pitch | Pitch'
+def new_pitch(uname):
+    title = 'New Pitch'
     form = PitchForm()
-    categories = Category.query.all()
+    user_name = User.query.filter_by(username=uname).first()
     if form.validate_on_submit():
-        category_id=(Category.get_category_name(form.category.data))
-        pitch = Pitch(pitch_content=form.pitch_content.data, pitcher=current_user, title=form.title.data, category_id=(Category.get_category_name(form.category.data)), upvotes= 0, downvotes=0)
-        db.session.add(pitch)
-        db.session.commit()
-        flash('Your pitch was posted successfully!', category='success')
-        return redirect(url_for('main.pitches_by_category', category_id = category_id))
-
-    return render_template('create_pitch.html',title=title, pitch_form=form, categories=categories)
+        pitch = form.pitch.data
+        category = form.category.data
+        new_pitch = Pitch(pitch=pitch,category=category)
+        new_pitch.save_pitch()
+        return redirect(url_for('main.profile', uname=uname))
+    return render_template('create_pitch.html',title=title, pitch_form=form)
 
 
 @main.route("/comment/<int:pitch_id>", methods=['GET', 'POST'])
 @login_required
 def new_comment(pitch_id):
-    title = 'New Comment | Pitch'
+    title = 'New Comment'
     form = CommentForm()
     categories = Category.query.all()
     pitch = Pitch.query.filter_by(id = pitch_id).first()

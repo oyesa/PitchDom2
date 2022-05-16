@@ -1,3 +1,6 @@
+
+/* font-family: 'Pacifico', cursive; */
+
 .introduction{
   margin: 2%;
 }
@@ -7,17 +10,18 @@
   text-align: justify;
 }
 .jumbotron{
-  vertical-align: middle;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 0.2rem 0.5rem #80F;
+  vertical-align: middle;
   padding: 0 !important;
-  width: 46%;
   margin: 2%;
+  width: 46%;
 }
 .jumbotron p{
   font-size: 14px;
 }
+
 #white{
   box-shadow: 0 0.2rem 0.5rem #80f;
   border-radius: 10px;
@@ -25,10 +29,12 @@
   padding: 1%;
   z-index: 10;
 }
+
 .comments{
   margin: 3%;
   color: inherit;
 }
+
 .blockquote p{
   font-size: 14px;
   color: white;

@@ -1,50 +1,4 @@
-
-{% block styles%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/navbar.css')}}" type="text/css">
-{% endblock styles%}
-
-<section class="header">
-    <nav class="navbar navbar-expand-lg navbar-transparent bg-transparent fs-14">
-      <a class="nav-logo" href="#"><strong>MONEY MATTERS</strong></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">HOME <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html" id="navbarDropdownMenuLink">
-              ABOUT
-            </a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services.html" id="navbarDropdownMenuLink">
-              SERVICES
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="investment.html" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              FINANCIAL CATEGORIES
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="investment.html">Investments</a>
-              <a class="dropdown-item" href="financial.html">Financial Discipline</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="main.html">CONTACT</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </section>
-
-
-<!-- <div class="navbar navbar-dark bg-dark">
+<div class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
       <div class="navbar-header">
           <div class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"
@@ -58,7 +12,8 @@
           <div class="navbar-right">
 
               {% if current_user.is_authenticated %}
-              <a class="navbar-brand" style="font-size: 14px; float: right !important" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
+              <a class="navbar-brand" style="font-size: 14px; font-family: sans-serif;
+              float: right !important" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
               <a class=" btn my-2 my-sm-0" href="{{url_for('auth.logout')}}" style="margin: 10px; font-family: sans-serif;">Logout</a>
               {% else %}
               <a class="navbar-brand"></a>
@@ -77,7 +32,7 @@
                           {% endfor%}
                       </div>
                   </li>
-                  <li><a href="{{url_for('main.new_pitch', uname=current_user.username)}}"> Create a pitch</a></li>
+                  <li><a href="{{url_for('main.new_pitch', uname=current_user.username)}}"> Create a Pitch</a></li>
 
                   {% if current_user.username == "Oluchi"%}
                   <li><a href="{{url_for('main.add_category')}}"> Add a category</a></li>
@@ -87,4 +42,4 @@
           </div>
       </div>
   </div>
-</div> -->
+</div>

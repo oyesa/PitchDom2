@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h3 class="text-center"><strong>ELEVATOR PITCH</strong></h3>
+<h6 class="text-center">The </h6>
+It has been said that an effective elevator pitch is meant to be no more than 30 seconds, just like the length of 
+time you ride in an elevator. You want to keep your words easily digestible, so avoid trying to get too deep into specifics as it can drag 
+on the conversation — and lose your prospect's attention. Your take away here is <strong>Keep your elevator pitch goal-oriented</strong>
+  <a href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
+
+{% endblock %}

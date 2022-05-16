@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center"><strong>INVESTOR PITCH</strong></h3>
+<h6 class="text-center">The Proverbial Shark-Tank</h6>
+  <p class="card-text">Investors are busy people. One of the best ways to set your pitch up for success is with a fantastic hook. 
+  First, introduce the problem.Then, explain why that is a <em>BIG</em> deal. Finally, present your big idea and impress the sh**t out of them! 
+  Remeber investors will prefer to put their money into a unique solution that can be upscaled. 
+    <a href="{{url_for('main.new_pitch', uname=current_user.username)}}">Share your Pitch</a> and get feedback on it.</p>
+
+{% endblock %}
