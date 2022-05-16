@@ -7,8 +7,6 @@ from datetime import datetime
 
 
 
-
-
 class User(UserMixin,db.Model): 
     __tablename__ = 'users' 
     id = db.Column(db.Integer,primary_key=True)
@@ -99,13 +97,12 @@ class Comment(db.Model):
 
 class Pitch(db.Model):
         __tablename__ = 'pitches'
-        id = db.Column(db.Integer,primary_key = True)
+        id = db.Column(db.Integer,primary_key=True)
         title = db.Column(db.String(50))
         pitch_content = db.Column(db.Text)
         posted = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-        upvote = db.relationship('Upvote', backref='post', lazy='dynamic')
-        downvote = db.relationship('Downvote', backref='post', lazy='dynamic')
-        pitcher_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+        upvote = db.relationship('Upvote', backref='pitch', lazy='dynamic')
+        downvote = db.relationship('Downvote', backref='pitch', lazy='dynamic')
         category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
         comment = db.relationship("Comment", backref ='pitch', lazy = "dynamic")
 
@@ -121,14 +118,8 @@ class Pitch(db.Model):
         def get_category_pitch(cls,category_id):
                 return cls.query.filter_by(category_id=category_id).order_by(cls.timestamp.desc())
 
-        @classmethod
-        def get_pitch_id(cls,pitch_id): 
-                return cls.query.filter_by(pitch_id=pitch_id).order_by(cls.timestamp.desc())
-
-
         def __repr__(self):
                 return f"Pitch {self.title}"
-
 
 
 #upvote and downvote 
@@ -137,7 +128,7 @@ class Upvote(db.Model):
     __tablename__ = 'upvotes'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    pitch_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def save_upvote(self):
@@ -159,7 +150,7 @@ class Downvote(db.Model):
     __tablename__ = 'downvotes'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def save_downvotes(self):
