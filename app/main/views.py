@@ -128,3 +128,15 @@ def downvote (pitch_id):
     db.session.commit()
 
     return redirect(url_for('main.pitches_by_category', category_id = pitch.category_id))
+
+
+#display pitch categories
+@main.route('/category/<category>')
+def investor_pitches(category):
+   title='Category'
+   return render_template('category/investor_pitch.html',investor_pitches=investor_pitches,title=title)
+
+@main.route('/category/<category>')
+def elevator_pitches(category):
+   title='Category'
+   return render_template('category/elevator_pitch.html',elevator_pitches=elevator_pitches,title=title)
