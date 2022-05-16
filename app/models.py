@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(150))
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(50))
-    pitches = db.relationship('Pitch',backref = 'pitcher',lazy = "dynamic")
+    pitches = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
 
     #methods to get user information
     @property
@@ -29,7 +29,7 @@ class User(UserMixin,db.Model):
             self.pass_secure = generate_password_hash(password)
 
     def verify_password(self,password):
-            return check_password_hash(self.password_hash,password)
+            return check_password_hash(self.pass_secure,password)
 
     @staticmethod
     def get_user_by_username(username):
@@ -99,8 +99,10 @@ class Pitch(db.Model):
         __tablename__ = 'pitches'
         id = db.Column(db.Integer,primary_key=True)
         title = db.Column(db.String(50))
+        user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
         pitch_content = db.Column(db.Text)
-        posted = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+        # posted = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+        timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
         upvote = db.relationship('Upvote', backref='pitch', lazy='dynamic')
         downvote = db.relationship('Downvote', backref='pitch', lazy='dynamic')
         category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
