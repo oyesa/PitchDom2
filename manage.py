@@ -1,12 +1,12 @@
-from xml.etree.ElementTree import Comment
 from app import create_app, db
 from flask_script import Manager,Server
-from app.models import Category, User, Role,Pitch
+from app.models import Category, User, Role,Pitch, Comment
 from  flask_migrate import Migrate, MigrateCommand
 
 
 # Creating app instance
 app = create_app('production')
+app=create_app('test')
 
 
 manager = Manager(app)
