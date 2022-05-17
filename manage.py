@@ -6,7 +6,7 @@ from  flask_migrate import Migrate, MigrateCommand
 
 # Creating app instance
 app = create_app('production')
-app=create_app('test')
+
 
 
 manager = Manager(app)
@@ -28,4 +28,5 @@ def make_shell_context():
 
 
 if __name__ == '__main__':
+    app.config['SECRET_KEY'] = 'mySecret'
     manager.run()
